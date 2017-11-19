@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	<link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed" rel="stylesheet">
+
+
+<style type="text/css">
+
+* {
+	font-size: 20px;
+	font-family: 'Barlow Semi Condensed', sans-serif;
+}
+	html {
+		background-color: black;
+		font-size: 20px;
+	}
+
+	#currenttime {
+		text-align: center;
+		font-size: 100px;
+		color: green;
+		padding-top: 100px;
+	}
+
+	#alarmHour {
+		width: 50px;
+
+
+	}
+	#alarmMinute {
+		width: 50px;
+	}
+
+	#input {
+		display: inline;
+		width: 200px;
+	}
+
+	#border {
+		background-color: red;
+	}
+
+
+
+</style>
+
+
+</head>
+<body>
+
+	<div id=currenttime></div>
+
+	<div id="border">
+
+	<div id="input">
+		<input type="text" name="hour" id="alarmHour" placeholder="Hour">
+		<input type="text" name="minute" id="alarmMinute" placeholder="Minutes">
+		<input type="text" name="" placeholder="AM/PM" id="ampm">
+		<input type="button" name="aset" value="Set Alarm" onclick="setAlarm()" id="set">
+	</div>
+
+	<div id="border">
+
+	<div id="test"></div>
+
+
+
+	<script type="text/javascript">
+
+		function currentTime() {
+			var date = new Date();
+			var hour = date.getHours();
+			var minute = date.getMinutes();
+			var second = date.getSeconds();
+			var day = " AM"
+			
+
+		if (minute < 10) {
+
+			minute = "0" + minute;
+		}
+
+		if (second < 10) {
+			second = "0" + second;
+		}
+
+		if (hour > 12) {
+			hour = hour -12;
+			day = " PM"
+		}
+
+		var time = hour + ":" + minute + ":" + second + day;
+			document.getElementById("currenttime").innerHTML = time;
+
+
+		}
+		currentTime();
+		//clock checks time by milliseconds
+		setInterval(currentTime, 1000);
+
+	</script>
+
+	<script type="text/javascript">
+
+
+	function setAlarm() {
+
+		//current time & alarm time variables
+
+		var checkDate = new Date();
+		var checkHour = checkDate.getHours();
+		var checkMinute = checkDate.getMinutes();
+		var alarmHour = document.getElementById('alarmHour').value;
+		var alarmMinute = document.getElementById('alarmMinute').value;
+		var ampm = " AM"
+
+		//function conditions
+
+		if (checkHour === 0){
+			ampm = " AM"
+		}
+		if (checkHour > 12){
+			checkHour = checkHour - 12;
+			ampm = " PM"
+		}
+		if (alarmHour == checkHour && alarmMinute == checkMinute){
+			alert("WAKE UP!");
+		}
+
+		//clock checks time by milliseconds
+		setInterval(setAlarm, 1000);
+     
+		document.getElementById('test').innerHTML = "Alarm set for " + document.getElementById('alarmHour').value + ":" + document.getElementById('alarmMinute').value;
+	}
+
+
+
+
+		
+
+
+
+
+
+	</script>
+
+</body>
+</html>
